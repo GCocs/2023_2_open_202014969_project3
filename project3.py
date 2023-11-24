@@ -14,7 +14,7 @@ chat_id = 6893588310
 bot = telegram.Bot(token=token)
 public_chat_name = -1002111713064
 
-def handler(update, context):
+def chatGPT(update, context):
     message = update.channel_post
     completion = client.chat.completions.create(
         model="gpt-3.5-turbo-1106",
@@ -28,7 +28,7 @@ def handler(update, context):
 
     message = bot.send_message(chat_id=public_chat_name, text=completion.choices[0].message.content)
     print(message.chat_id)    
-echo_handler = MessageHandler(Filters.chat(public_chat_name), handler)
+echo_handler = MessageHandler(Filters.chat(public_chat_name), chatGPT)
 dispatcher.add_handler(echo_handler)
 
 
